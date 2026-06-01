@@ -13,7 +13,7 @@ DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 
 @app.route("/")
 def index():
-    return send_from_directory(".",index.html)
+    return send_from_directory(".","index.html")
 @app.route("/product_analyzer",methods=['POST'])
 def generate_product_data_analysis():
     data=request.get_json()
@@ -44,4 +44,4 @@ def generate_product_data_analysis():
 
 if __name__=="__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0",port=5000,debug=False)
+    app.run(host="0.0.0.0",port=port,debug=False)
