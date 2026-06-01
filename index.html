@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>product analiser</title>
+</head>    
+
+<body>
+
+    <h1>product analiser</h1>
+
+    <form id="productForm">
+        <p>
+          <label>产品名称</label>
+          <textarea id="product_input"  rows="1"  cols="5"></textarea>
+        </p>
+        <p>
+            <input type="text" >
+        </p>    
+        <button type="submit">get analyze</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("productForm").addEventListener('submit',function(e) {e.preventDefault();
+
+            const name = document.getElementById('product_input').value
+
+            document.getElementById('result').innerHTML = "分析中...";
+
+            fetch('http://127.0.0.1:5000/product_analyzer',{
+                method:'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({product_name:name})
+                })
+            
+       .then(response => response.json())
+       .then(data =>{
+            document.getElementById('result').innerHTML =
+            '<h2>analysis:</h2><pre>' + data.product_data_analysis +'</pre>'
+       });
+
+    });
+    </script>
+</body>
+
+
+    
+</html>
