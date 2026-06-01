@@ -1,4 +1,4 @@
-from flask import Flask, request , jsonify
+from flask import Flask, request , jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
@@ -11,6 +11,9 @@ CORS(app)
 
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 
+@app.route("/")
+def index():
+    return send_from_directory(".",index.html)
 @app.route("/product_analyzer",methods=['POST'])
 def generate_product_data_analysis():
     data=request.get_json()
