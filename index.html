@@ -28,7 +28,7 @@
 
             document.getElementById('result').innerHTML = "分析中...";
 
-            fetch('http://127.0.0.1:5000/product_analyzer',{
+            fetch('/product_analyzer',{     
                 method:'POST',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify({product_name:name})
